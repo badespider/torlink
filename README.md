@@ -6,6 +6,8 @@ Finding a torrent these days sucks. One site is a minefield of fake download but
 
 torlink is a torrent finder that lives in your terminal, with zero setup and nothing to configure. One search checks a short, curated list of reputable sources at once, and whatever you pick downloads straight to your computer. The files are yours, saved to your downloads folder.
 
+Need more than the curated list — ebooks, audiobooks, music, software, or your own private trackers? Connect a [Jackett](https://github.com/Jackett/Jackett) instance and torlink searches hundreds of indexers in a single query, with results sorted into their own tabs. See [Search everything](#search-everything-jackett--torznab) below.
+
 ## Get started
 
 1. **Install Node** (from [nodejs.org](https://nodejs.org)), it's all torlink needs.
@@ -18,9 +20,21 @@ torlink is a torrent finder that lives in your terminal, with zero setup and not
 
 That's the only thing you'll type. torlink opens straight to a search bar: search for what you want, paste in a magnet link or a bare infohash, or just press Enter on an empty box to browse the curated library. From there it's all keypresses, nothing to memorize, and `?` brings up the full list anytime.
 
+### Run it every day
+
+`npx torlnk` always works, but if you're running a copy you built from source and want a one-word command in any terminal, install the bin globally once:
+
+```sh
+npm install -g .    # from the torlink folder — creates the `torlnk` command
+```
+
+After that, just type `torlnk` to open it. Rebuild (`npm run build`) after pulling changes and the command picks them up.
+
 ## Finding something
 
 Type what you're looking for and press Enter. Results stream in from every source as they answer, tagged with size and how many people are sharing each one, so you can see what'll come down fast. Arrow to what you want and press `d` to save it.
+
+The tabs down the left narrow a search to one type — Movies, TV, Anime, Games, and (once Jackett is connected) Music, Ebooks, Audiobooks, and Software. Each result's `Src` tag shows where it came from, so you can tell a curated source from an aggregated one at a glance.
 
 <p align="center">
   <img src="preview/browse.svg" alt="torlink's browse view: the sidebar, the search bar, and merged results from every source" style="max-width: 832px; width: 100%; height: auto;">
@@ -30,7 +44,7 @@ Type what you're looking for and press Enter. Results stream in from every sourc
 
 Active downloads sit up top with their progress, speed, and time left; when one finishes it drops into Recently downloaded just below, so the list stays tidy. Everything's still there when you come back, and anything interrupted picks up where it left off.
 
-Downloads run in the background while you keep searching, so you can queue up as many as you want. They save to your downloads folder, and the Downloads pane keeps tabs on each one. When something finishes it keeps seeding automatically so the next person can find it too, and the Seeding tab lets you pause or stop that anytime.
+Downloads run in the background while you keep searching, so you can queue up as many as you want. They save to your downloads folder, and the Downloads pane keeps tabs on each one. Press `o` on any download (or any item in the Seeding tab) to open its folder in Finder. When something finishes it keeps seeding automatically so the next person can find it too, and the Seeding tab lets you pause or stop that anytime.
 
 <p align="center">
   <img src="preview/downloads.svg" alt="torlink's Downloads pane: live progress on top, recently downloaded below" style="max-width: 832px; width: 100%; height: auto;">
@@ -38,7 +52,7 @@ Downloads run in the background while you keep searching, so you can queue up as
 
 ## What it searches
 
-A short, hand-picked list of trusted sources:
+Out of the box, with no setup, a short, hand-picked list of trusted sources:
 
 | Category | Sources |
 | --- | --- |
@@ -59,7 +73,7 @@ Press **`J`** inside torlink, paste your Jackett URL and API key, and press Ente
 http://127.0.0.1:9117  your-api-key
 ```
 
-Results from those indexers show up merged into the **All** tab, tagged `JKT`, and on their own **Jackett** tab. Full walkthrough, including how to stand up Jackett from scratch: [docs/infinity-search.md](docs/infinity-search.md).
+Results from those indexers show up merged into the **All** tab, tagged `JKT`, and on their own **Jackett** tab. torlink reads each result's category and sorts it, so once Jackett is connected you also get **Music**, **Ebooks**, **Audiobooks**, and **Software** tabs — search once, then flip to just the type you want. Full walkthrough, including how to stand up Jackett from scratch: [docs/infinity-search.md](docs/infinity-search.md).
 
 A word of caution: unlike the curated list above, aggregated indexers aren't vetted, and they can return anything — including games and other executables. Treat those results with the same care you'd give any download from an unknown source.
 
