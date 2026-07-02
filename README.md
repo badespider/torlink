@@ -10,25 +10,27 @@ Need more than the curated list — ebooks, audiobooks, music, software, or your
 
 ## Get started
 
-1. **Install Node** (from [nodejs.org](https://nodejs.org)), it's all torlink needs.
-2. **Open your terminal.**
-3. **Start it:**
+All torlink needs is [Node](https://nodejs.org) (v22+). Then open your terminal.
 
-   ```sh
-   npx torlnk
-   ```
-
-That's the only thing you'll type. torlink opens straight to a search bar: search for what you want, paste in a magnet link or a bare infohash, or just press Enter on an empty box to browse the curated library. From there it's all keypresses, nothing to memorize, and `?` brings up the full list anytime.
-
-### Run it every day
-
-`npx torlnk` always works, but if you're running a copy you built from source and want a one-word command in any terminal, install the bin globally once:
+The fastest taste is the published build:
 
 ```sh
-npm install -g .    # from the torlink folder — creates the `torlnk` command
+npx torlnk
 ```
 
-After that, just type `torlnk` to open it. Rebuild (`npm run build`) after pulling changes and the command picks them up.
+**But `npx torlnk` runs the version published to npm, which can lag behind this repo** — the Jackett "search everything" and the Music/Ebooks/Audiobooks/Software tabs land here first. To run **this** version, build it from source once:
+
+```sh
+git clone https://github.com/badespider/torlink.git
+cd torlink
+npm install
+npm run build
+npm install -g .     # creates the `torlnk` command
+```
+
+From then on, just type **`torlnk`** in any terminal — that's the whole daily routine. After pulling new changes, run `npm run build` again and the command picks them up.
+
+Either way, torlink opens straight to a search bar: search for what you want, paste in a magnet link or a bare infohash, or press Enter on an empty box to browse the curated library. It's all keypresses — nothing to memorize — and `?` brings up the full list anytime. For the unlimited Jackett search, see [Search everything](#search-everything-jackett--torznab).
 
 ## Finding something
 
