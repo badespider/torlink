@@ -3,20 +3,48 @@ import type { Config } from "../config/config";
 import type { DownloadQueue } from "../download/queue";
 import type { HistoryItem } from "../download/history";
 import type { QueueItem, SeedItem } from "../download/types";
-import type { SourceGroup, SourceId } from "../sources/types";
+import type { ContentKind, SourceGroup, SourceId } from "../sources/types";
 
 export type View = "splash" | "browser";
 
-export type Category = "all" | "games" | "movies" | "tv" | "anime";
+export type Category =
+  | "all"
+  | "games"
+  | "movies"
+  | "tv"
+  | "anime"
+  | "music"
+  | "ebooks"
+  | "audiobooks"
+  | "software"
+  | "jackett";
 
 export type Section = Category | "downloads" | "seeding";
 
-export const CATEGORIES: { key: Category; label: string; group?: SourceGroup }[] = [
+export interface CategoryDef {
+  key: Category;
+  label: string;
+  // A result matches this tab if its source's group is `group` (built-in
+  // sources) OR its content kind is `kind` (aggregator results). "All" has
+  // neither and shows everything.
+  group?: SourceGroup;
+  kind?: ContentKind;
+  // Content-only kinds that nothing built-in provides: hidden from the sidebar
+  // until a Jackett/Torznab endpoint is configured.
+  jackettOnly?: boolean;
+}
+
+export const CATEGORIES: CategoryDef[] = [
   { key: "all", label: "All" },
-  { key: "games", label: "Games", group: "Games" },
-  { key: "movies", label: "Movies", group: "Movies" },
-  { key: "tv", label: "TV", group: "TV" },
-  { key: "anime", label: "Anime", group: "Anime" },
+  { key: "games", label: "Games", group: "Games", kind: "game" },
+  { key: "movies", label: "Movies", group: "Movies", kind: "movie" },
+  { key: "tv", label: "TV", group: "TV", kind: "tv" },
+  { key: "anime", label: "Anime", group: "Anime", kind: "anime" },
+  { key: "music", label: "Music", kind: "music", jackettOnly: true },
+  { key: "ebooks", label: "Ebooks", kind: "ebook", jackettOnly: true },
+  { key: "audiobooks", label: "Audiobooks", kind: "audiobook", jackettOnly: true },
+  { key: "software", label: "Software", kind: "software", jackettOnly: true },
+  { key: "jackett", label: "Jackett", group: "Jackett" },
 ];
 
 export type Region = "sidebar" | "content" | "help";

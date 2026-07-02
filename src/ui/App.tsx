@@ -13,6 +13,7 @@ import { readClipboard, writeClipboard } from "../util/clipboard";
 import { cleanText, truncate } from "../util/format";
 import {
   StoreContext,
+  CATEGORIES,
   type CaptureMode,
   type DownloadFocus,
   type Region,
@@ -34,6 +35,9 @@ import { TabTitle } from "./components/TabTitle";
 import { Splash } from "./views/Splash";
 import { FolderPrompt } from "./components/FolderPrompt";
 import { TrackersPrompt } from "./components/TrackersPrompt";
+import { JackettPrompt } from "./components/JackettPrompt";
+import { invalidateSource } from "../sources/cache";
+import type { TorznabEndpoint } from "../config/config";
 import { footerHints } from "./keymap";
 import { COLOR, ICON } from "./theme";
 import { useMouseWheel } from "./hooks/useMouseWheel";
@@ -85,6 +89,7 @@ export function App({
   const [showHelp, setShowHelp] = useState(false);
   const [editingFolder, setEditingFolder] = useState(false);
   const [editingTrackers, setEditingTrackers] = useState(false);
+  const [editingJackett, setEditingJackett] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const booting = useRef(false);
 
@@ -167,6 +172,24 @@ export function App({
   const closeTrackersPrompt = useCallback(() => {
     setEditingTrackers(false);
   }, []);
+
+  const closeJackettPrompt = useCallback(() => {
+    setEditingJackett(false);
+  }, []);
+
+  const setJackett = useCallback(
+    (list: TorznabEndpoint[]) => {
+      closeJackettPrompt();
+      if (!config) return;
+      // The endpoint changed, so cached Jackett results from the old one are stale.
+      invalidateSource("torznab");
+      setConfig({ ...config, torznab: list });
+      setNotice(
+        list.length === 0 ? "Cleared Jackett endpoint." : `Connected Jackett: ${list[0]!.url}`,
+      );
+    },
+    [config, setConfig, closeJackettPrompt],
+  );
 
   const setTrackers = useCallback(
     (list: string[]) => {
@@ -281,6 +304,14 @@ export function App({
     return () => clearTimeout(t);
   }, [notice]);
 
+  // The Jackett-only content tabs (Ebooks, Audiobooks, …) vanish from the sidebar
+  // when no endpoint is configured. If one was active when Jackett was cleared,
+  // snap back to All so the selection and the results filter stay valid.
+  useEffect(() => {
+    if (!config || config.torznab.length > 0) return;
+    if (CATEGORIES.find((c) => c.key === section)?.jackettOnly) setSection("all");
+  }, [config, section]);
+
   const compact = rows < 18;
   const showTopRule = !compact;
   const showFooter = rows >= 12;
@@ -306,7 +337,7 @@ export function App({
       submitQuery,
       section,
       setSection,
-      region: showHelp || editingFolder || editingTrackers ? "help" : region,
+      region: showHelp || editingFolder || editingTrackers || editingJackett ? "help" : region,
       setRegion,
       captureMode,
       setCaptureMode,
@@ -336,6 +367,7 @@ export function App({
     showHelp,
     editingFolder,
     editingTrackers,
+    editingJackett,
     captureMode,
     downloadFocus,
     seedFocus,
@@ -357,7 +389,7 @@ export function App({
         quitAll();
         return;
       }
-      if (editingFolder || editingTrackers) return; // the prompt owns input (its own esc + enter)
+      if (editingFolder || editingTrackers || editingJackett) return; // the prompt owns input (its own esc + enter)
       if (captureMode === "text") return;
       if (showHelp) {
         setShowHelp(false);
@@ -368,6 +400,9 @@ export function App({
         return;
       }
       if (input === "o") {
+        // In the Downloads/Seeding panes, "o" opens the selected item's folder
+        // (handled by those components); everywhere else it edits the download folder.
+        if (region === "content" && (section === "downloads" || section === "seeding")) return;
         setShowHelp(false);
         setEditingFolder(true);
         return;
@@ -375,6 +410,12 @@ export function App({
       if (input === "t") {
         setShowHelp(false);
         setEditingTrackers(true);
+        return;
+      }
+      // Shift+J, not "j": lowercase j is vim-style "move down" in every list.
+      if (input === "J") {
+        setShowHelp(false);
+        setEditingJackett(true);
         return;
       }
       if (input === "m") {
@@ -465,10 +506,21 @@ export function App({
           </Box>
         ) : null}
 
+        {editingJackett ? (
+          <Box marginTop={1}>
+            <JackettPrompt
+              width={Math.max(24, Math.min(cols - 4, 78))}
+              value={store.config.torznab}
+              onSubmit={setJackett}
+              onCancel={closeJackettPrompt}
+            />
+          </Box>
+        ) : null}
+
         <Box
           height={bodyH}
           marginTop={compact ? 0 : 1}
-          display={showHelp || editingFolder || editingTrackers ? "none" : "flex"}
+          display={showHelp || editingFolder || editingTrackers || editingJackett ? "none" : "flex"}
           overflow="hidden"
         >
           <Sidebar />
@@ -484,7 +536,7 @@ export function App({
         </Box>
 
         {showFooter ? (
-          <Box display={showHelp || editingFolder || editingTrackers ? "none" : "flex"}>
+          <Box display={showHelp || editingFolder || editingTrackers || editingJackett ? "none" : "flex"}>
             <Footer hints={footerHints(region, section, downloadFocus, seedFocus)} />
           </Box>
         ) : null}

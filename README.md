@@ -49,6 +49,20 @@ A short, hand-picked list of trusted sources:
 
 Games are the only category that can run code, so they come from FitGirl alone, a repacker with a long, trusted track record; everything else is plain video and subtitles. If a source is down, the search carries on without it, and torlink tells you which one is offline.
 
+## Search everything (Jackett / Torznab)
+
+The built-in list is short and curated on purpose. If you want more — hundreds of trackers, or your own private ones — point torlink at a [Jackett](https://github.com/Jackett/Jackett) (or Prowlarr) instance and it will search every indexer you've added there in one go. One extra source, effectively unlimited reach.
+
+Press **`J`** inside torlink, paste your Jackett URL and API key, and press Enter:
+
+```
+http://127.0.0.1:9117  your-api-key
+```
+
+Results from those indexers show up merged into the **All** tab, tagged `JKT`, and on their own **Jackett** tab. Full walkthrough, including how to stand up Jackett from scratch: [docs/infinity-search.md](docs/infinity-search.md).
+
+A word of caution: unlike the curated list above, aggregated indexers aren't vetted, and they can return anything — including games and other executables. Treat those results with the same care you'd give any download from an unknown source.
+
 ## Contributing
 
 To run or work on torlink locally:

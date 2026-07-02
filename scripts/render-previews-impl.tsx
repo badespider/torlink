@@ -79,7 +79,7 @@ function makeStore(
 ): Store {
   const noop = (): void => {};
   return {
-    config: { downloadDir: "~/Downloads/torlink" } as Config,
+    config: { downloadDir: "~/Downloads/torlink", trackers: [], torznab: [] } as Config,
     setConfig: noop,
     queue: fakeQueue(items, history, seeds),
     view: "browser",

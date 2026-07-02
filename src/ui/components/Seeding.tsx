@@ -5,6 +5,7 @@ import { Panel } from "./Panel";
 import { wrapStep, windowStart } from "../move";
 import { COLOR, GUTTER, ICON, sourceStyle } from "../theme";
 import { cleanText, formatBytes, formatBytesPerSec, truncate } from "../../util/format";
+import { revealInFileManager } from "../../util/reveal";
 import type { SeedItem } from "../../download/types";
 
 const MARK = 2;
@@ -60,6 +61,17 @@ export function Seeding() {
       } else if (input === "c") {
         const h = history[clamped];
         if (h) queue.removeHistory(h.id);
+      } else if (input === "o") {
+        const h = history[clamped];
+        if (h) {
+          void revealInFileManager(h.dir, h.name).then((ok) =>
+            setNotice(
+              ok
+                ? `Opened folder for ${truncate(cleanText(h.name), 32)}`
+                : "That file isn't on disk anymore.",
+            ),
+          );
+        }
       }
     },
     { isActive: focused && total > 0 },

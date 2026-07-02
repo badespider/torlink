@@ -20,6 +20,7 @@ export const HELP_GROUPS: HelpGroup[] = [
       { keys: "esc", label: "Back" },
       { keys: "o", label: "Download folder" },
       { keys: "t", label: "Extra trackers" },
+      { keys: "J", label: "Jackett search (all indexers)" },
       { keys: "q", label: "Quit" },
     ],
   },
@@ -40,6 +41,7 @@ export const HELP_GROUPS: HelpGroup[] = [
       { keys: "c", label: "Cancel or remove from list" },
       { keys: "f", label: "Retry failed" },
       { keys: "d", label: "Download again" },
+      { keys: "o", label: "Open file location" },
       { keys: "x", label: "Clear recent" },
     ],
   },
@@ -48,6 +50,7 @@ export const HELP_GROUPS: HelpGroup[] = [
     hints: [
       { keys: "p", label: "Pause/resume" },
       { keys: "c", label: "Remove from list" },
+      { keys: "o", label: "Open file location" },
     ],
   },
 ];
@@ -78,11 +81,23 @@ export function footerHints(
   if (section === "seeding") {
     const label =
       seedFocus === "seeding" ? "Pause" : seedFocus === "missing" ? "Retry" : "Resume";
-    return [{ keys: "p", label }, { keys: "c", label: "Remove" }, SWITCH, ALWAYS];
+    return [
+      { keys: "p", label },
+      { keys: "o", label: "Open" },
+      { keys: "c", label: "Remove" },
+      SWITCH,
+      ALWAYS,
+    ];
   }
   if (section === "downloads") {
     if (downloadFocus === "paused") {
-      return [{ keys: "p", label: "Resume" }, { keys: "c", label: "Cancel" }, SWITCH, ALWAYS];
+      return [
+        { keys: "p", label: "Resume" },
+        { keys: "o", label: "Open" },
+        { keys: "c", label: "Cancel" },
+        SWITCH,
+        ALWAYS,
+      ];
     }
     if (downloadFocus === "failed") {
       return [{ keys: "f", label: "Retry" }, { keys: "c", label: "Remove" }, SWITCH, ALWAYS];
@@ -91,13 +106,19 @@ export function footerHints(
       return [
         NAVIGATE,
         { keys: "d", label: "Download again" },
+        { keys: "o", label: "Open" },
         { keys: "c", label: "Remove" },
-        { keys: "x", label: "Clear" },
         SWITCH,
         ALWAYS,
       ];
     }
-    return [{ keys: "p", label: "Pause" }, { keys: "c", label: "Cancel" }, SWITCH, ALWAYS];
+    return [
+      { keys: "p", label: "Pause" },
+      { keys: "o", label: "Open" },
+      { keys: "c", label: "Cancel" },
+      SWITCH,
+      ALWAYS,
+    ];
   }
   return [
     NAVIGATE,

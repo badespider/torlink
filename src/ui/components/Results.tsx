@@ -110,6 +110,7 @@ function Detail({ r, width }: { r: TorrentResult; width: number }) {
 
 export function Results() {
   const {
+    config,
     query,
     submitQuery,
     section,
@@ -127,9 +128,16 @@ export function Results() {
   const [sort, setSort] = useState<Sort>("none");
   const results = useMemo(() => {
     const cat = CATEGORIES.find((c) => c.key === section);
-    const base = cat?.group
-      ? search.results.filter((r) => getSource(r.source).group === cat.group)
-      : search.results;
+    // A result belongs to a tab if its built-in source group matches, or its
+    // aggregator content kind matches. "All" (no group, no kind) shows everything.
+    const base =
+      cat && (cat.group || cat.kind)
+        ? search.results.filter(
+            (r) =>
+              (cat.kind !== undefined && r.kind === cat.kind) ||
+              (cat.group !== undefined && getSource(r.source).group === cat.group),
+          )
+        : search.results;
     return sortResults(base, sort);
   }, [search.results, section, sort]);
 
@@ -261,6 +269,14 @@ export function Results() {
       );
     }
     if (results.length === 0) {
+      if ((section === "jackett" || activeCat?.jackettOnly) && config.torznab.length === 0) {
+        const what = activeCat?.jackettOnly ? activeCat.label.toLowerCase() : "these results";
+        return (
+          <Text color={COLOR.warn}>
+            {`Jackett isn’t connected yet — ${what} come from it. Press "J" to add your URL and API key.`}
+          </Text>
+        );
+      }
       if (erroredCount >= search.total) {
         const downAll = SOURCES.filter((s) => search.perSource[s.id]?.error);
         return (

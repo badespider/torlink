@@ -13,6 +13,7 @@ import {
   formatRelative,
   truncate,
 } from "../../util/format";
+import { revealInFileManager } from "../../util/reveal";
 import type { QueueItem } from "../../download/types";
 import type { HistoryItem } from "../../download/history";
 
@@ -44,7 +45,8 @@ function rightStats(it: QueueItem): string {
 }
 
 export function Downloads() {
-  const { queue, region, contentWidth, listRows, startDownload, setDownloadFocus } = useStore();
+  const { queue, region, contentWidth, listRows, startDownload, setDownloadFocus, setNotice } =
+    useStore();
   const active = useQueueItems(queue);
   const recent = useQueueHistory(queue);
   const focused = region === "content";
@@ -61,7 +63,18 @@ export function Downloads() {
       else if (key.downArrow || input === "j") setCursor(wrapStep(clamped, 1, total));
       else if (input === "f") queue.retryFailed();
       else if (input === "x") queue.clearHistory();
-      else if (inActive) {
+      else if (input === "o") {
+        const it = inActive ? active[clamped] : recent[recentCursor];
+        if (it) {
+          void revealInFileManager(it.dir, it.name).then((ok) =>
+            setNotice(
+              ok
+                ? `Opened folder for ${truncate(cleanText(it.name), 32)}`
+                : "That file isn't on disk yet.",
+            ),
+          );
+        }
+      } else if (inActive) {
         const it = active[clamped];
         if (!it) return;
         if (input === "c") queue.cancel(it.id);
