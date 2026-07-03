@@ -25,13 +25,10 @@ export interface CategoryDef {
   key: Category;
   label: string;
   // A result matches this tab if its source's group is `group` (built-in
-  // sources) OR its content kind is `kind` (aggregator results). "All" has
-  // neither and shows everything.
+  // sources) OR its content kind is `kind` (Knaben/Jackett results, which are
+  // classified per-result). "All" has neither and shows everything.
   group?: SourceGroup;
   kind?: ContentKind;
-  // Content-only kinds that nothing built-in provides: hidden from the sidebar
-  // until a Jackett/Torznab endpoint is configured.
-  jackettOnly?: boolean;
 }
 
 export const CATEGORIES: CategoryDef[] = [
@@ -40,10 +37,10 @@ export const CATEGORIES: CategoryDef[] = [
   { key: "movies", label: "Movies", group: "Movies", kind: "movie" },
   { key: "tv", label: "TV", group: "TV", kind: "tv" },
   { key: "anime", label: "Anime", group: "Anime", kind: "anime" },
-  { key: "music", label: "Music", kind: "music", jackettOnly: true },
-  { key: "ebooks", label: "Ebooks", kind: "ebook", jackettOnly: true },
-  { key: "audiobooks", label: "Audiobooks", kind: "audiobook", jackettOnly: true },
-  { key: "software", label: "Software", kind: "software", jackettOnly: true },
+  { key: "music", label: "Music", kind: "music" },
+  { key: "ebooks", label: "Ebooks", kind: "ebook" },
+  { key: "audiobooks", label: "Audiobooks", kind: "audiobook" },
+  { key: "software", label: "Software", kind: "software" },
   { key: "jackett", label: "Jackett", group: "Jackett" },
 ];
 

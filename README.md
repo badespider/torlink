@@ -6,7 +6,7 @@ Finding a torrent these days sucks. One site is a minefield of fake download but
 
 torlink is a torrent finder that lives in your terminal, with zero setup and nothing to configure. One search checks a short, curated list of reputable sources at once, and whatever you pick downloads straight to your computer. The files are yours, saved to your downloads folder.
 
-Need more than the curated list — ebooks, audiobooks, music, software, or your own private trackers? Connect a [Jackett](https://github.com/Jackett/Jackett) instance and torlink searches hundreds of indexers in a single query, with results sorted into their own tabs. See [Search everything](#search-everything-jackett--torznab) below.
+And it's not just movies and TV: torlink also searches **ebooks, audiobooks, music, and software** out of the box — no configuration — each with its own tab. Want even more reach, or your own private trackers? Connect a [Jackett](https://github.com/Jackett/Jackett) instance and one search hits hundreds of indexers; see [Search everything](#search-everything-jackett--torznab) below.
 
 ## Get started
 
@@ -26,7 +26,7 @@ torlink opens straight to a search bar: search for what you want, paste in a mag
 
 Type what you're looking for and press Enter. Results stream in from every source as they answer, tagged with size and how many people are sharing each one, so you can see what'll come down fast. Arrow to what you want and press `d` to save it.
 
-The tabs down the left narrow a search to one type — Movies, TV, Anime, Games, and (once Jackett is connected) Music, Ebooks, Audiobooks, and Software. Each result's `Src` tag shows where it came from, so you can tell a curated source from an aggregated one at a glance.
+The tabs down the left narrow a search to one type — Movies, TV, Anime, Games, Music, Ebooks, Audiobooks, and Software. Each result's `Src` tag shows where it came from, so you can tell a curated source from a meta-index at a glance.
 
 <p align="center">
   <img src="preview/browse.svg" alt="torlink's browse view: the sidebar, the search bar, and merged results from every source" style="max-width: 832px; width: 100%; height: auto;">
@@ -44,7 +44,7 @@ Downloads run in the background while you keep searching, so you can queue up as
 
 ## What it searches
 
-Out of the box, with no setup, a short, hand-picked list of trusted sources:
+Out of the box, with no setup:
 
 | Category | Sources |
 | --- | --- |
@@ -52,12 +52,15 @@ Out of the box, with no setup, a short, hand-picked list of trusted sources:
 | Movies | YTS, The Pirate Bay, 1337x |
 | TV | EZTV, The Pirate Bay, 1337x |
 | Anime | Nyaa, SubsPlease |
+| Everything else (ebooks, audiobooks, music, software, …) | Knaben, Torrents-CSV |
 
-Games are the only category that can run code, so they come from FitGirl alone, a repacker with a long, trusted track record; everything else is plain video and subtitles. If a source is down, the search carries on without it, and torlink tells you which one is offline.
+The curated rows are hand-picked, single-purpose sources. Knaben and Torrents-CSV are open meta-indexes with plain JSON APIs; torlink reads each of their results' categories and sorts them into the Music, Ebooks, Audiobooks, and Software tabs. If a source is down, the search carries on without it, and torlink tells you which one is offline.
+
+A note on trust: the curated Games tab comes from FitGirl alone, a repacker with a long track record, because games can run code. The meta-indexes aren't curated the same way — anything executable they return (software, games) deserves the same caution you'd give any download from an unknown source.
 
 ## Search everything (Jackett / Torznab)
 
-The built-in list is short and curated on purpose. If you want more — hundreds of trackers, or your own private ones — point torlink at a [Jackett](https://github.com/Jackett/Jackett) (or Prowlarr) instance and it will search every indexer you've added there in one go. One extra source, effectively unlimited reach.
+Everything above works with zero setup. If you want even more — hundreds of trackers, or your own private ones — point torlink at a [Jackett](https://github.com/Jackett/Jackett) (or Prowlarr) instance and it will also search every indexer you've added there in one go. One extra source, effectively unlimited reach.
 
 Press **`J`** inside torlink, paste your Jackett URL and API key, and press Enter:
 

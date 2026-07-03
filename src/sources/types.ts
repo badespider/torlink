@@ -8,9 +8,11 @@ export type SourceId =
   | "tpb-tv"
   | "x1337-movies"
   | "x1337-tv"
+  | "knaben"
+  | "torrentscsv"
   | "torznab";
 
-export type SourceGroup = "Games" | "Movies" | "TV" | "Anime" | "Jackett";
+export type SourceGroup = "Games" | "Movies" | "TV" | "Anime" | "Everything" | "Jackett";
 
 // The content type of a result, derived from Torznab/newznab category codes.
 // Only aggregator (Torznab) results carry this; built-in sources are grouped by

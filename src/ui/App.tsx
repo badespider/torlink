@@ -13,7 +13,6 @@ import { readClipboard, writeClipboard } from "../util/clipboard";
 import { cleanText, truncate } from "../util/format";
 import {
   StoreContext,
-  CATEGORIES,
   type CaptureMode,
   type DownloadFocus,
   type Region,
@@ -304,13 +303,6 @@ export function App({
     return () => clearTimeout(t);
   }, [notice]);
 
-  // The Jackett-only content tabs (Ebooks, Audiobooks, …) vanish from the sidebar
-  // when no endpoint is configured. If one was active when Jackett was cleared,
-  // snap back to All so the selection and the results filter stay valid.
-  useEffect(() => {
-    if (!config || config.torznab.length > 0) return;
-    if (CATEGORIES.find((c) => c.key === section)?.jackettOnly) setSection("all");
-  }, [config, section]);
 
   const compact = rows < 18;
   const showTopRule = !compact;

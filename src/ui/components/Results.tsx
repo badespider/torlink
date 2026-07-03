@@ -269,11 +269,10 @@ export function Results() {
       );
     }
     if (results.length === 0) {
-      if ((section === "jackett" || activeCat?.jackettOnly) && config.torznab.length === 0) {
-        const what = activeCat?.jackettOnly ? activeCat.label.toLowerCase() : "these results";
+      if (section === "jackett" && config.torznab.length === 0) {
         return (
           <Text color={COLOR.warn}>
-            {`Jackett isn’t connected yet — ${what} come from it. Press "J" to add your URL and API key.`}
+            {'Jackett isn’t connected yet. Press "J" to add your URL and API key — then one search hits every indexer you’ve set up.'}
           </Text>
         );
       }

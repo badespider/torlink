@@ -51,7 +51,7 @@
     <text x="656" y="216" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">7.82 GB</text>
     <text x="742.4" y="216" textLength="28.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#86d6a2">YTS</text>
     <rect x="784.9" y="200" width="1.4" height="22" fill="#a78bfa"/>
-    <text x="60.8" y="238" textLength="57.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Movies</text>
+    <text x="60.8" y="238" textLength="57.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">TVvies</text>
     <rect x="208.9" y="222" width="1.4" height="22" fill="#a78bfa"/>
     <rect x="262.4" y="222" width="9.6" height="22" fill="#7c5cd6"/>
     <rect x="272" y="222" width="9.6" height="22" fill="#8060d9"/>
@@ -70,14 +70,14 @@
     <text x="396.8" y="238" textLength="76.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#6b6577">░░░░░░░░</text>
     <text x="492.8" y="238" textLength="211.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">64%  7.7 MB/s  •41  6m</text>
     <rect x="784.9" y="222" width="1.4" height="22" fill="#a78bfa"/>
-    <text x="60.8" y="260" textLength="19.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">TV</text>
+    <text x="60.8" y="260" textLength="48" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Anime</text>
     <rect x="208.9" y="244" width="1.4" height="22" fill="#a78bfa"/>
     <rect x="784.9" y="244" width="1.4" height="22" fill="#a78bfa"/>
-    <text x="60.8" y="282" textLength="48" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Anime</text>
+    <text x="60.8" y="282" textLength="48" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Music</text>
     <rect x="208.9" y="266" width="1.4" height="22" fill="#a78bfa"/>
     <text x="224" y="282" textLength="230.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Recently downloaded  (2)</text>
     <rect x="784.9" y="266" width="1.4" height="22" fill="#a78bfa"/>
-    <text x="60.8" y="304" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Jackett</text>
+    <text x="60.8" y="304" textLength="96" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Audiobooks</text>
     <rect x="208.9" y="288" width="1.4" height="22" fill="#a78bfa"/>
     <text x="243.2" y="304" textLength="9.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#86d6a2" fill-opacity="0.55">✓</text>
     <text x="262.4" y="304" textLength="230.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Elden Ring: Shadow of t…</text>
@@ -85,6 +85,7 @@
     <text x="656" y="304" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">1hr ago</text>
     <text x="752" y="304" textLength="19.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#a78bfa" fill-opacity="0.55">FG</text>
     <rect x="784.9" y="288" width="1.4" height="22" fill="#a78bfa"/>
+    <text x="60.8" y="326" textLength="76.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Software</text>
     <rect x="208.9" y="310" width="1.4" height="22" fill="#a78bfa"/>
     <text x="243.2" y="326" textLength="9.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#86d6a2" fill-opacity="0.55">✓</text>
     <text x="262.4" y="326" textLength="230.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Breaking Bad S05E14 108…</text>
@@ -92,23 +93,25 @@
     <text x="627.2" y="326" textLength="96" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">1d 1hr ago</text>
     <text x="732.8" y="326" textLength="38.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#f0c560" fill-opacity="0.55">EZTV</text>
     <rect x="784.9" y="310" width="1.4" height="22" fill="#a78bfa"/>
-    <rect x="41.6" y="332" width="4.8" height="22" fill="#6b6577"/>
-    <text x="60.8" y="348" textLength="86.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#b9a7e6">Downloads</text>
-    <text x="156.8" y="348" textLength="28.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">(1)</text>
+    <text x="60.8" y="348" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Jackett</text>
     <rect x="208.9" y="332" width="1.4" height="22" fill="#a78bfa"/>
     <rect x="784.9" y="332" width="1.4" height="22" fill="#a78bfa"/>
-    <text x="60.8" y="370" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Seeding</text>
     <rect x="208.9" y="354" width="1.4" height="22" fill="#a78bfa"/>
     <rect x="784.9" y="354" width="1.4" height="22" fill="#a78bfa"/>
+    <rect x="41.6" y="376" width="4.8" height="22" fill="#6b6577"/>
+    <text x="60.8" y="392" textLength="86.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#b9a7e6">Downloads</text>
+    <text x="156.8" y="392" textLength="28.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">(1)</text>
     <text x="204.8" y="392" textLength="585.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#a78bfa">╰───────────────────────────────────────────────────────────╯</text>
     <text x="41.6" y="414" textLength="9.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#b9a7e6">p</text>
     <text x="60.8" y="414" textLength="48" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Pause</text>
-    <text x="137.6" y="414" textLength="9.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#b9a7e6">c</text>
-    <text x="156.8" y="414" textLength="57.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Cancel</text>
-    <text x="243.2" y="414" textLength="28.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#b9a7e6">tab</text>
-    <text x="281.6" y="414" textLength="57.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Switch</text>
-    <text x="368" y="414" textLength="9.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#b9a7e6">?</text>
-    <text x="387.2" y="414" textLength="38.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Keys</text>
+    <text x="137.6" y="414" textLength="9.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#b9a7e6">o</text>
+    <text x="156.8" y="414" textLength="38.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Open</text>
+    <text x="224" y="414" textLength="9.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#b9a7e6">c</text>
+    <text x="243.2" y="414" textLength="57.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Cancel</text>
+    <text x="329.6" y="414" textLength="28.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#b9a7e6">tab</text>
+    <text x="368" y="414" textLength="57.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Switch</text>
+    <text x="454.4" y="414" textLength="9.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill="#b9a7e6">?</text>
+    <text x="473.6" y="414" textLength="38.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve" fill-opacity="0.55">Keys</text>
   </g>
   <rect x="262.4" y="222" width="9.6" height="22" fill="#7c5cd6">
     <animate attributeName="fill" calcMode="discrete" dur="3.48s" values="#7c5cd6;#7f5fd7;#8669da;#9277de;#a18ae3;#b29ee8;#c3b3ee;#d2c5f3;#ded4f7;#e5ddfa;#e8e0fb;#e5ddfa;#ded4f7;#d2c5f3;#c3b3ee;#b29ee8;#a18ae3;#9277de;#8669da;#7f5fd7;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6;#7c5cd6" repeatCount="indefinite"/>

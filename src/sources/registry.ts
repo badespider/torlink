@@ -2,7 +2,9 @@ import { eztv } from "./eztv";
 import { fitgirl } from "./fitgirl";
 import { nyaa } from "./nyaa";
 import { subsplease } from "./subsplease";
+import { knaben } from "./knaben";
 import { tpbMovies, tpbTv } from "./piratebay";
+import { torrentscsv } from "./torrentscsv";
 import { torznab } from "./torznab";
 import { x1337Movies, x1337Tv } from "./x1337";
 import { yts } from "./yts";
@@ -18,6 +20,8 @@ export const SOURCES: readonly Source[] = [
   x1337Tv,
   nyaa,
   subsplease,
+  knaben,
+  torrentscsv,
   torznab,
 ];
 
@@ -27,7 +31,14 @@ export function getSource(id: SourceId): Source {
   return SOURCES.find((s) => s.id === id) ?? DEFAULT_SOURCE;
 }
 
-const GROUP_ORDER: readonly SourceGroup[] = ["Games", "Movies", "TV", "Anime", "Jackett"];
+const GROUP_ORDER: readonly SourceGroup[] = [
+  "Games",
+  "Movies",
+  "TV",
+  "Anime",
+  "Everything",
+  "Jackett",
+];
 
 export function sourcesByGroup(): { group: SourceGroup; sources: Source[] }[] {
   return GROUP_ORDER.map((group) => ({
