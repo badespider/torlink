@@ -10,27 +10,17 @@ Need more than the curated list — ebooks, audiobooks, music, software, or your
 
 ## Get started
 
-All torlink needs is [Node](https://nodejs.org) (v22+). Then open your terminal.
-
-The fastest taste is the published build:
+All torlink needs is [Node](https://nodejs.org) (v22+). Install it with one command — the repo ships prebuilt, so there's nothing to clone or compile:
 
 ```sh
-npx torlnk
+npm install -g https://github.com/badespider/torlink/archive/refs/heads/main.tar.gz
 ```
 
-**But `npx torlnk` runs the version published to npm, which can lag behind this repo** — the Jackett "search everything" and the Music/Ebooks/Audiobooks/Software tabs land here first. To run **this** version, build it from source once:
+From then on, just type **`torlnk`** in any terminal — that's the whole daily routine. To update later, run the same install command again.
 
-```sh
-git clone https://github.com/badespider/torlink.git
-cd torlink
-npm install
-npm run build
-npm install -g .     # creates the `torlnk` command
-```
+(`npx torlnk` also exists, but it runs the version published to npm, which can lag behind this repo — the Jackett "search everything" and the Music/Ebooks/Audiobooks/Software tabs land here first.)
 
-From then on, just type **`torlnk`** in any terminal — that's the whole daily routine. After pulling new changes, run `npm run build` again and the command picks them up.
-
-Either way, torlink opens straight to a search bar: search for what you want, paste in a magnet link or a bare infohash, or press Enter on an empty box to browse the curated library. It's all keypresses — nothing to memorize — and `?` brings up the full list anytime. For the unlimited Jackett search, see [Search everything](#search-everything-jackett--torznab).
+torlink opens straight to a search bar: search for what you want, paste in a magnet link or a bare infohash, or press Enter on an empty box to browse the curated library. It's all keypresses — nothing to memorize — and `?` brings up the full list anytime. For the unlimited Jackett search, see [Search everything](#search-everything-jackett--torznab).
 
 ## Finding something
 
