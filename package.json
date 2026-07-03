@@ -22,6 +22,7 @@
     "test": "vitest run",
     "verify:seeding": "tsx scripts/verify-seeding.ts",
     "previews": "tsx scripts/render-previews.tsx",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
