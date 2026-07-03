@@ -1,5 +1,5 @@
 import { fetchResilient, HttpError, USER_AGENT } from "../util/net";
-import { buildMagnet, isInfoHash } from "./magnet";
+import { buildMagnet, isInfoHash, normalizeInfoHash } from "./magnet";
 import type { ContentKind, SearchOptions, Source, TorrentResult } from "./types";
 
 // Knaben is a meta-search that indexes dozens of trackers behind one JSON API,
@@ -68,8 +68,11 @@ async function search(query: string, opts: SearchOptions = {}): Promise<TorrentR
   const json = (await res.json()) as KnabenResponse;
   const out: TorrentResult[] = [];
   for (const hit of json.hits ?? []) {
-    const hash = (hit.hash ?? "").toLowerCase();
-    if (!isInfoHash(hash)) continue;
+    const raw = (hit.hash ?? "").trim();
+    if (!isInfoHash(raw)) continue;
+    // Normalize to hex so cross-source dedupe (which compares infoHash strings)
+    // matches a base32 copy of the same torrent from another source.
+    const hash = normalizeInfoHash(raw);
     const name = hit.title || hash;
     const addedMs = hit.date ? Date.parse(hit.date) : NaN;
     out.push({
@@ -92,6 +95,7 @@ export const knaben: Source = {
   id: "knaben",
   label: "Knaben",
   group: "Everything",
+  classifies: true,
   homepage: "https://knaben.org",
   search,
 };

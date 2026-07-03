@@ -242,7 +242,14 @@ export function Results() {
     [search.perSource],
   );
   const activeCat = CATEGORIES.find((c) => c.key === section);
-  const tabSources = activeCat?.group ? SOURCES.filter((s) => s.group === activeCat.group) : SOURCES;
+  // Which sources this tab draws from, for outage attribution: group tabs use
+  // their group's sources; kind-only tabs (Music, Ebooks, …) are fed solely by
+  // the classifying sources (Knaben, Jackett); All watches everything.
+  const tabSources = activeCat?.group
+    ? SOURCES.filter((s) => s.group === activeCat.group)
+    : activeCat?.kind
+      ? SOURCES.filter((s) => s.classifies)
+      : SOURCES;
   const tabErrored =
     tabSources.length > 0 && tabSources.every((s) => search.perSource[s.id]?.error);
   const showStats = useMemo(

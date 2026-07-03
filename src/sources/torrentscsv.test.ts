@@ -45,6 +45,12 @@ describe("torrentscsv.search", () => {
     expect(r!.magnet).toContain(`xt=urn:btih:${HASH}`);
   });
 
+  it("normalizes a base32 hash to hex", async () => {
+    stubFetch([{ infohash: "A".repeat(32), name: "b32" }]);
+    const [r] = await torrentscsv.search("q");
+    expect(r!.infoHash).toBe("0".repeat(40));
+  });
+
   it("skips invalid hashes and clamps negative counts", async () => {
     stubFetch([
       { infohash: "bad", name: "x" },

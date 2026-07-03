@@ -76,6 +76,12 @@ describe("knaben.search", () => {
     expect(b!.magnet).toContain("tr=");
   });
 
+  it("normalizes a base32 hash to hex so cross-source dedupe matches", async () => {
+    stubFetch([hit({ hash: "A".repeat(32), magnetUrl: null })]);
+    const [r] = await knaben.search("query");
+    expect(r!.infoHash).toBe("0".repeat(40));
+  });
+
   it("skips hits with missing or invalid hashes and clamps negative counts", async () => {
     stubFetch([
       hit({ hash: "nope" }),

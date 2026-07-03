@@ -33,11 +33,21 @@ function blankPerSource(loading: boolean): Record<SourceId, SourceState> {
   return out;
 }
 
-function dedupe(list: TorrentResult[]): TorrentResult[] {
+export function dedupe(list: TorrentResult[]): TorrentResult[] {
   const byHash = new Map<string, TorrentResult>();
   for (const r of list) {
     const existing = byHash.get(r.infoHash);
-    if (!existing || r.seeders > existing.seeders) byHash.set(r.infoHash, r);
+    if (!existing) {
+      byHash.set(r.infoHash, r);
+      continue;
+    }
+    // Keep the healthiest copy, but never lose a content kind to a copy that
+    // lacks one — otherwise the torrent vanishes from the kind-filtered tabs.
+    if (r.seeders > existing.seeders) {
+      byHash.set(r.infoHash, r.kind ? r : { ...r, kind: existing.kind });
+    } else if (!existing.kind && r.kind) {
+      byHash.set(r.infoHash, { ...existing, kind: r.kind });
+    }
   }
   return [...byHash.values()];
 }

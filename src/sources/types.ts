@@ -50,6 +50,9 @@ export interface Source {
   id: SourceId;
   label: string;
   group: SourceGroup;
+  // True for sources whose results carry a ContentKind (Knaben, Torznab).
+  // The kind-filtered tabs (Music, Ebooks, …) attribute outages to these.
+  classifies?: boolean;
   homepage: string;
   search(query: string, opts?: SearchOptions): Promise<TorrentResult[]>;
 }

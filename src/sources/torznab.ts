@@ -319,6 +319,7 @@ export const torznab: Source = {
   id: "torznab",
   label: "Jackett",
   group: "Jackett",
+  classifies: true,
   homepage: "https://github.com/Jackett/Jackett",
   search,
 };

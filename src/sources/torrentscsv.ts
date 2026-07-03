@@ -1,5 +1,5 @@
 import { fetchResilient, HttpError, USER_AGENT } from "../util/net";
-import { buildMagnet, isInfoHash } from "./magnet";
+import { buildMagnet, isInfoHash, normalizeInfoHash } from "./magnet";
 import type { SearchOptions, Source, TorrentResult } from "./types";
 
 // Torrents-CSV is an open, self-hostable index of proven torrents with a plain
@@ -37,8 +37,10 @@ async function search(query: string, opts: SearchOptions = {}): Promise<TorrentR
   const json = (await res.json()) as CsvResponse;
   const out: TorrentResult[] = [];
   for (const t of json.torrents ?? []) {
-    const hash = (t.infohash ?? "").toLowerCase();
-    if (!isInfoHash(hash)) continue;
+    const raw = (t.infohash ?? "").trim();
+    if (!isInfoHash(raw)) continue;
+    // Normalize to hex so cross-source dedupe matches other sources' copies.
+    const hash = normalizeInfoHash(raw);
     const name = t.name || hash;
     out.push({
       infoHash: hash,
@@ -48,7 +50,7 @@ async function search(query: string, opts: SearchOptions = {}): Promise<TorrentR
       leechers: Math.max(0, t.leechers ?? 0),
       source: "torrentscsv",
       magnet: buildMagnet(hash, name),
-      added: t.created_unix || undefined,
+      added: t.created_unix ?? undefined,
     });
   }
   return out;
